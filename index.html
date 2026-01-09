@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness - 你的健康生活平台</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Crimson+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background-color: #FDFBF7;
+            color: #2C2416;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.25rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s;
+            background: transparent;
+        }
+
+        .nav.scrolled {
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(44, 36, 22, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            color: #2C2416;
+            font-family: 'Playfair Display', serif;
+            background: none;
+            border: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            color: #5C4F3D;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #C67D5C;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F4EBD9 0%, #E8DCC8 100%);
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .accent {
+            color: #C67D5C;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            background: linear-gradient(135deg, #C67D5C 0%, #B06D4F 100%);
+            color: #FFF;
+            box-shadow: 0 8px 24px rgba(198, 125, 92, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Features */
+        .features-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #FFF;
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(44, 36, 22, 0.08);
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Page Container */
+        .page-container {
+            display: none;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        /* Subpage Header */
+        .subpage-header {
+            background: linear-gradient(135deg, #F4EBD9 0%, #E8DCC8 100%);
+            padding: 4rem 3rem 3rem;
+            text-align: center;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: #5C4F3D;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            font-family: inherit;
+        }
+
+        .back-button:hover {
+            color: #C67D5C;
+        }
+
+        .subpage-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 3rem;
+        }
+
+        .content-card {
+            background: #FFF;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(44, 36, 22, 0.08);
+            transition: all 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-image {
+            width: 100%;
+            padding-top: 66.67%; /* 创建长方形 3:2 比例 */
+            position: relative;
+            background: linear-gradient(135deg, rgba(198, 125, 92, 0.2) 0%, rgba(198, 125, 92, 0.1) 100%);
+            overflow: hidden;
+        }
+
+        .card-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+}
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #2C2416;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-beginner {
+            background: rgba(139, 157, 131, 0.2);
+            color: #8B9D83;
+        }
+
+        .badge-intermediate {
+            background: rgba(212, 165, 116, 0.2);
+            color: #D4A574;
+        }
+
+        .badge-advanced {
+            background: rgba(198, 125, 92, 0.2);
+            color: #C67D5C;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            font-size: 1.2rem;
+            color: #8B7D6B;
+        }
+
+        .error-message {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: #FFE0E0;
+            border-left: 4px solid #C62828;
+            border-radius: 8px;
+            color: #C62828;
+        }
+
+        @media (max-width: 968px) {
+            .nav-menu {
+                display: none;
+            }
+            .nav, .features-section, .content-grid {
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <button class="nav-logo" onclick="showPage('home')">✨ WELLNESS</button>
+        <ul class="nav-menu">
+            <li><button class="nav-link active" onclick="showPage('home')">首页</button></li>
+            <li><button class="nav-link" onclick="showPage('movement')">运动库</button></li>
+            <li><button class="nav-link" onclick="showPage('workout')">训练记录</button></li>
+            <li><button class="nav-link" onclick="showPage('lesson')">每日课程</button></li>
+            <li><button class="nav-link" onclick="showPage('scent')">香氛</button></li>
+            <li><button class="nav-link" onclick="showPage('recipe')">食谱</button></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="color: #5C4F3D; font-size: 0.95rem;">
+                👤 <span id="current-username" style="font-weight: 600;"></span>
+            </div>
+            <button onclick="changeUsername()" style="background: rgba(74, 144, 226, 0.1); color: #4A90E2; border: 1px solid rgba(74, 144, 226, 0.3); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; cursor: pointer; font-weight: 500;">
+                更改
+            </button>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page-container active">
+        <section class="hero">
+            <div style="max-width: 1000px; text-align: center;">
+                <h1>Your Wellness<br><span class="accent">Journey</span></h1>
+                <p style="font-size: 1.35rem; margin-bottom: 3rem; color: #5C4F3D;">
+                    从运动到营养，从身体到心灵<br>一个平台，全面提升你的生活质量
+                </p>
+                <button class="btn" onclick="showPage('movement')">开始探索 →</button>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 3.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem;">发现你的健康之路</h2>
+                <p style="font-size: 1.2rem; color: #5C4F3D;">五大核心功能，助你打造理想生活</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" onclick="showPage('movement')">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏋️</div>
+                    <h3>Movement Library</h3>
+                    <div style="color: #C67D5C; margin-bottom: 1rem;">运动库</div>
+                    <p style="font-size: 1.05rem; color: #5C4F3D;">按部位浏览训练动作，掌握正确姿势与力量技巧</p>
+                </div>
+
+                <div class="feature-card" onclick="showPage('workout')">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📅</div>
+                    <h3>Workout Log</h3>
+                    <div style="color: #8B9D83; margin-bottom: 1rem;">训练记录</div>
+                    <p style="font-size: 1.05rem; color: #5C4F3D;">记录每一次的组数、次数与重量，见证进步轨迹</p>
+                </div>
+
+                <div class="feature-card" onclick="showPage('lesson')">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📚</div>
+                    <h3>Daily Lesson</h3>
+                    <div style="color: #D4A574; margin-bottom: 1rem;">每日课程</div>
+                    <p style="font-size: 1.05rem; color: #5C4F3D;">探索"为什么"的科学，每日精选健身知识</p>
+                </div>
+
+                <div class="feature-card" onclick="showPage('scent')">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌸</div>
+                    <h3>Scent & Soul</h3>
+                    <div style="color: #A67C9E; margin-bottom: 1rem;">香氛</div>
+                    <p style="font-size: 1.05rem; color: #5C4F3D;">探索气味如何唤醒意识，转化日常为仪式感</p>
+                </div>
+
+                <div class="feature-card" onclick="showPage('recipe')">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🍽️</div>
+                    <h3>Recipes</h3>
+                    <div style="color: #C67D5C; margin-bottom: 1rem;">食谱</div>
+                    <p style="font-size: 1.05rem; color: #5C4F3D;">简单美味的营养餐，为身体和健康科学供能</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Movement Library Page -->
+    <div id="movement-page" class="page-container">
+        <div class="subpage-header">
+            <button class="back-button" onclick="showPage('home')">← 返回首页</button>
+            <h1>Movement Library</h1>
+            <p style="font-size: 1.2rem; color: #5C4F3D;">按部位浏览训练动作，掌握正确姿势与力量技巧</p>
+        </div>
+        <div id="movement-content" class="content-grid">
+            <div class="loading">正在加载训练动作... 🏋️</div>
+        </div>
+    </div>
+
+    <!-- Workout Log Page -->
+    <div id="workout-page" class="page-container">
+        <div class="subpage-header">
+            <button class="back-button" onclick="showPage('home')">← 返回首页</button>
+            <h1>Workout Log</h1>
+            <p style="font-size: 1.2rem; color: #5C4F3D;">记录每一次的组数、次数与重量，见证进步轨迹</p>
+        </div>
+        <div id="workout-content" style="max-width: 1000px; margin: 3rem auto; padding: 0 3rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div id="currentUserDisplay" style="display: none; padding: 0.75rem 1.5rem; background: rgba(74, 144, 226, 0.1); border-radius: 50px; color: #4A90E2; font-weight: 600;"></div>
+                    <button onclick="changeUser()" style="padding: 0.75rem 1.5rem; background: white; border: 2px solid #4A90E2; border-radius: 50px; color: #4A90E2; font-weight: 600; cursor: pointer; transition: all 0.3s;">
+                        切换用户
+                    </button>
+                </div>
+                <button onclick="openAddWorkoutModal()" style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3); transition: all 0.3s;">
+                    ✚ Add Record
+                </button>
+            </div>
+            <div id="workout-list">
+                <div class="loading">正在加载训练记录... 📊</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Username Setup Modal -->
+    <div id="usernameSetupModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000;">
+        <div style="max-width: 500px; margin: 10rem auto; background: white; border-radius: 24px; padding: 3rem; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem; color: #2C2416;">👤 欢迎使用 Workout Log</h2>
+            <p style="color: #5C4F3D; margin-bottom: 2rem; line-height: 1.6;">
+                为了保护你的隐私，请设置一个用户名。<br>
+                <strong>你的训练记录只有你自己能看到。</strong>
+            </p>
+            
+            <input type="text" id="usernameInput" placeholder="请输入用户名（例如：小明）" style="width: 100%; padding: 1rem; border: 2px solid #E8E0D5; border-radius: 12px; font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center;">
+            
+            <button onclick="saveUsernameSetup()" style="width: 100%; padding: 1.25rem; border: none; border-radius: 50px; background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); color: white; font-weight: 600; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);">
+                开始使用
+            </button>
+            
+            <p style="font-size: 0.85rem; color: #B8A898; margin-top: 1.5rem;">
+                💡 提示：你可以随时在右上角更改用户名
+            </p>
+        </div>
+    </div>
+
+    <!-- Add Workout Modal -->
+    <div id="addWorkoutModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; overflow-y: auto;">
+        <div style="max-width: 700px; margin: 2rem auto; background: white; border-radius: 24px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeAddWorkoutModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: #8B7D6B;">×</button>
+            
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 2rem; color: #2C2416;">添加训练记录</h2>
+            
+            <form id="addWorkoutForm">
+                <!-- Date -->
+                <div style="margin-bottom: 2rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #2C2416;">📅 训练日期</label>
+                    <input type="date" id="workoutDate" required style="width: 100%; padding: 0.75rem; border: 2px solid #E8E0D5; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <!-- Exercises List -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 1rem; color: #2C2416;">💪 训练动作</label>
+                    <div id="exercisesList" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <!-- Exercise items will be added here dynamically -->
+                    </div>
+                    
+                    <!-- Add Exercise Button -->
+                    <button type="button" onclick="addExerciseField()" style="width: 100%; padding: 1rem; margin-top: 1rem; border: 2px dashed #4A90E2; border-radius: 8px; background: rgba(74, 144, 226, 0.05); color: #4A90E2; font-weight: 600; cursor: pointer; transition: all 0.3s;">
+                        ✚ 添加动作
+                    </button>
+                </div>
+                
+                <!-- Duration -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #2C2416;">⏱️ 训练日时长</label>
+                    <input type="text" id="duration" placeholder="例如：60分钟、1小时" style="width: 100%; padding: 0.75rem; border: 2px solid #E8E0D5; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <!-- Notes -->
+                <div style="margin-bottom: 2rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #2C2416;">💭 备注</label>
+                    <textarea id="notes" placeholder="记录今天的感受、心得..." rows="3" style="width: 100%; padding: 0.75rem; border: 2px solid #E8E0D5; border-radius: 8px; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+                
+                <!-- Submit Buttons -->
+                <div style="display: flex; gap: 1rem;">
+                    <button type="button" onclick="closeAddWorkoutModal()" style="flex: 1; padding: 1rem; border: 2px solid #E8E0D5; border-radius: 50px; background: white; color: #5C4F3D; font-weight: 600; cursor: pointer;">
+                        取消
+                    </button>
+                    <button type="submit" style="flex: 1; padding: 1rem; border: none; border-radius: 50px; background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); color: white; font-weight: 600; cursor: pointer;">
+                        保存记录
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Daily Lesson Page -->
+    <div id="lesson-page" class="page-container">
+        <div class="subpage-header">
+            <button class="back-button" onclick="showPage('home')">← 返回首页</button>
+            <h1>Daily Lesson</h1>
+            <p style="font-size: 1.2rem; color: #5C4F3D;">探索"为什么"的科学，每日精选健身知识</p>
+        </div>
+        <div id="lesson-content" class="content-grid">
+            <div class="loading">正在加载每日课程... 📚</div>
+        </div>
+    </div>
+
+    <!-- Scent & Soul Page -->
+    <div id="scent-page" class="page-container">
+        <div class="subpage-header">
+            <button class="back-button" onclick="showPage('home')">← 返回首页</button>
+            <h1>Scent & Soul</h1>
+            <p style="font-size: 1.2rem; color: #5C4F3D;">探索气味如何唤醒意识，转化日常为仪式感</p>
+        </div>
+        <div id="scent-content" class="content-grid">
+            <div class="loading">正在加载香氛体验... 🌸</div>
+        </div>
+    </div>
+
+    <!-- Scent Detail Page -->
+    <div id="scent-detail-page" class="page-container">
+        <div class="subpage-header" style="background: linear-gradient(135deg, rgba(166, 124, 158, 0.15) 0%, rgba(166, 124, 158, 0.05) 100%);">
+            <button class="back-button" onclick="showPage('scent')">← 返回香氛列表</button>
+            <h1 id="scent-detail-title">香氛详情</h1>
+        </div>
+        <div id="scent-detail-content" style="max-width: 900px; margin: 3rem auto; padding: 0 3rem;">
+            <div class="loading">加载中...</div>
+        </div>
+    </div>
+
+    <!-- Recipe Page -->
+    <div id="recipe-page" class="page-container">
+        <div class="subpage-header">
+            <button class="back-button" onclick="showPage('home')">← 返回首页</button>
+            <h1>Recipes</h1>
+            <p style="font-size: 1.2rem; color: #5C4F3D;">简单美味的营养餐，为身体和健康科学供能</p>
+        </div>
+        <div id="recipe-content" class="content-grid">
+            <div class="loading">正在加载食谱... 🍽️</div>
+        </div>
+    </div>
+
+    <!-- Recipe Detail Page -->
+    <div id="recipe-detail-page" class="page-container">
+        <div class="subpage-header" style="background: linear-gradient(135deg, rgba(198, 125, 92, 0.15) 0%, rgba(198, 125, 92, 0.05) 100%);">
+            <button class="back-button" onclick="showPage('recipe')">← 返回食谱列表</button>
+            <h1 id="recipe-detail-title">食谱详情</h1>
+        </div>
+        <div id="recipe-detail-content" style="max-width: 900px; margin: 3rem auto; padding: 0 3rem;">
+            <div class="loading">加载中...</div>
+        </div>
+    </div>
+
+    <script>
+        // Airtable Configuration
+        const AIRTABLE_CONFIG = {
+            token: 'patetbQZIJea5xpCw.b26222b63dbd11a265cba2f0cd80b3aa2afd1452bdac160b5e4aabe23e2d0bae',
+            baseId: 'appmXMl1neyrpDqil',
+            tables: {
+                movement: 'Movement Library',
+                workout: 'Worklog New',
+                recipe: 'Recipe',
+                lesson: 'daily lesson',
+                scent: 'Aromatherapy & Soul'
+            }
+        };
+
+        // Fetch data from Airtable
+        async function fetchAirtableData(tableName, filterFormula = null) {
+            try {
+                let url = `https://api.airtable.com/v0/${AIRTABLE_CONFIG.baseId}/${encodeURIComponent(tableName)}`;
+                
+                // Add filter if provided
+                if (filterFormula) {
+                    url += `?filterByFormula=${encodeURIComponent(filterFormula)}`;
+                }
+                
+                const response = await fetch(
+                    url,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${AIRTABLE_CONFIG.token}`
+                        }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.records;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                throw error;
+            }
+        }
+
+        // Get field value with fallbacks
+        function getField(record, ...fieldNames) {
+            for (const name of fieldNames) {
+                if (record.fields[name]) return record.fields[name];
+            }
+            return '';
+        }
+
+        // Load Movement Library
+        async function loadMovementLibrary() {
+            const container = document.getElementById('movement-content');
+            
+            try {
+                const records = await fetchAirtableData(AIRTABLE_CONFIG.tables.movement);
+                
+                if (records.length === 0) {
+                    container.innerHTML = '<div class="loading">暂无训练动作数据</div>';
+                    return;
+                }
+
+                let html = '';
+                records.forEach(record => {
+                    const name = getField(record, 'Name', 'name', '名称');
+                    const category = getField(record, 'Category', 'category', '类别');
+                    const difficulty = getField(record, 'Difficulty', 'difficulty', '难度');
+                    const sets = getField(record, 'Sets', 'sets', '组数');
+                    const reps = getField(record, 'Reps', 'reps', '次数');
+                    const description = getField(record, 'Description', 'description', '描述');
+                    const image = getField(record, 'Image', 'image', '图片');
+
+                    let difficultyClass = 'badge-intermediate';
+                    const diffLower = difficulty.toLowerCase();
+                    if (diffLower.includes('beginner') || diffLower.includes('初级')) {
+                        difficultyClass = 'badge-beginner';
+                    } else if (diffLower.includes('advanced') || diffLower.includes('高级')) {
+                        difficultyClass = 'badge-advanced';
+                    }
+
+                    html += `
+                        <div class="content-card">
+                           <div class="card-image">
+    ${image && image.length > 0 && image[0].url 
+        ? `<img src="${image[0].url}" alt="${name}" style="width: 100%; height: 100%; object-fit: cover;">` 
+        : `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #8B7D6B; font-style: italic;">[ ${name} ]</div>`
+    }
+</div>
+                            <div class="card-content">
+                                <h3 class="card-title">${name}</h3>
+                                <div>
+                                    ${category ? `<span class="badge badge-intermediate">${category}</span>` : ''}
+                                    ${difficulty ? `<span class="badge ${difficultyClass}">${difficulty}</span>` : ''}
+                                </div>
+                                ${description ? `<p style="color: #5C4F3D; margin: 1rem 0;">${description}</p>` : ''}
+                                <div style="color: #8B7D6B; font-size: 0.95rem;">
+                                    ${sets || reps ? `${sets || ''} ${reps || ''}` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h3>❌ 加载失败</h3>
+                        <p>${error.message}</p>
+                        <p style="margin-top: 1rem;">请检查网络连接或稍后再试。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load Workout Log
+        async function loadWorkoutLog() {
+            const container = document.getElementById('workout-content');
+            
+            try {
+                const records = await fetchAirtableData(AIRTABLE_CONFIG.tables.workout);
+                
+                if (records.length === 0) {
+                    container.innerHTML = '<div class="loading">暂无训练记录</div>';
+                    return;
+                }
+
+                let html = '<div style="background: #FFF; border-radius: 20px; padding: 2rem; border: 1px solid rgba(44, 36, 22, 0.08);">';
+                html += '<h2 style="font-family: Playfair Display, serif; margin-bottom: 2rem; color: #2C2416;">最近训练</h2>';
+                
+                records.forEach((record, index) => {
+                    const date = getField(record, 'Date', 'date', '日期');
+                    const exercise = getField(record, 'Exercise', 'exercise', '动作');
+                    const sets = getField(record, 'Sets', 'sets', '组数');
+                    const reps = getField(record, 'Reps', 'reps', '次数');
+                    const weight = getField(record, 'Weight', 'weight', '重量');
+                    const notes = getField(record, 'Notes', 'notes', '备注');
+
+                    html += `
+                        <div style="padding: 1.5rem; border-bottom: ${index < records.length - 1 ? '1px solid rgba(44, 36, 22, 0.08)' : 'none'};">
+                            <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                                <div>
+                                    <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416; margin-bottom: 0.5rem;">${exercise || '训练'}</div>
+                                    <div style="color: #8B7D6B; font-size: 0.9rem;">${date || ''}</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: #5C4F3D;">${sets ? `${sets} 组` : ''} ${reps ? `× ${reps}` : ''}</div>
+                                    <div style="color: #C67D5C; font-weight: 600;">${weight || ''}</div>
+                                </div>
+                            </div>
+                            ${notes ? `<p style="color: #8B7D6B; margin-top: 1rem; font-style: italic;">${notes}</p>` : ''}
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+                container.innerHTML = html;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h3>❌ 加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ===== USER MANAGEMENT SYSTEM =====
+        
+        // Generate unique user ID
+        function generateUserId() {
+            return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        // Get current user ID
+        function getCurrentUserId() {
+            let userId = localStorage.getItem('wellness_user_id');
+            if (!userId) {
+                userId = generateUserId();
+                localStorage.setItem('wellness_user_id', userId);
+            }
+            return userId;
+        }
+        
+        // Get current username
+        function getCurrentUsername() {
+            return localStorage.getItem('wellness_username') || '';
+        }
+        
+        // Set username
+        function setUsername(username) {
+            localStorage.setItem('wellness_username', username);
+            updateUsernameDisplay();
+        }
+        
+        // Update username display
+        function updateUsernameDisplay() {
+            const username = getCurrentUsername();
+            const displayElement = document.getElementById('current-username');
+            if (displayElement && username) {
+                displayElement.textContent = username;
+            }
+        }
+        
+        // Show username setup modal
+        function showUsernameSetup() {
+            const username = getCurrentUsername();
+            if (!username) {
+                document.getElementById('usernameSetupModal').style.display = 'block';
+            }
+        }
+        
+        // Save username from setup modal
+        function saveUsernameSetup() {
+            const input = document.getElementById('usernameInput');
+            const username = input.value.trim();
+            
+            if (!username) {
+                alert('请输入用户名');
+                return;
+            }
+            
+            setUsername(username);
+            document.getElementById('usernameSetupModal').style.display = 'none';
+            
+            // Show welcome message
+            alert(`欢迎，${username}！\n\n你的训练记录只有你自己能看到。\n你可以随时在右上角更改用户名。`);
+        }
+        
+        // Change username
+        function changeUsername() {
+            const newUsername = prompt('请输入新的用户名：', getCurrentUsername());
+            if (newUsername && newUsername.trim()) {
+                setUsername(newUsername.trim());
+                alert('用户名已更新！');
+                // Reload workout log to show current user's records
+                if (document.getElementById('workout-page').classList.contains('active')) {
+                    loadWorkoutLog();
+                }
+            }
+        }
+        
+        // Initialize user on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure user ID exists
+            getCurrentUserId();
+            
+            // Update username display
+            updateUsernameDisplay();
+            
+            // Show username setup if needed
+            setTimeout(showUsernameSetup, 500);
+        });
+
+        // ===== WORKOUT LOG FUNCTIONS =====
+        
+        // Store movement library records for dropdown
+        let movementLibraryRecords = [];
+        
+        // Store workout records
+        let workoutRecords = [];
+        
+        // Counter for exercise fields
+        let exerciseFieldCounter = 0;
+        
+        // Open Add Workout Modal
+        async function openAddWorkoutModal() {
+            // Set today's date as default
+            document.getElementById('workoutDate').valueAsDate = new Date();
+            
+            // Reset exercise counter
+            exerciseFieldCounter = 0;
+            
+            // Clear exercises list
+            document.getElementById('exercisesList').innerHTML = '';
+            
+            // Load movements into cache - WAIT for this to complete!
+            await loadMovementsDropdown();
+            
+            // Add first exercise field (now with loaded data)
+            addExerciseField();
+            
+            // Show modal
+            document.getElementById('addWorkoutModal').style.display = 'block';
+        }
+        
+        // Close Add Workout Modal
+        function closeAddWorkoutModal() {
+            document.getElementById('addWorkoutModal').style.display = 'none';
+            document.getElementById('addWorkoutForm').reset();
+            document.getElementById('exercisesList').innerHTML = '';
+            exerciseFieldCounter = 0;
+        }
+        
+        // Load movements from library into cache
+        async function loadMovementsDropdown() {
+            try {
+                console.log('Loading movements from library...');
+                // If we haven't loaded movements yet, fetch them
+                if (movementLibraryRecords.length === 0) {
+                    movementLibraryRecords = await fetchAirtableData(AIRTABLE_CONFIG.tables.movement);
+                    console.log(`Loaded ${movementLibraryRecords.length} movements`);
+                } else {
+                    console.log(`Using cached ${movementLibraryRecords.length} movements`);
+                }
+            } catch (error) {
+                console.error('Error loading movements:', error);
+                alert('加载动作库失败，请检查网络连接或Airtable配置');
+            }
+        }
+        
+        // Create movement options HTML
+        function getMovementOptions() {
+            let options = '<option value="">从动作库选择...</option>';
+            console.log(`Creating options for ${movementLibraryRecords.length} movements`);
+            movementLibraryRecords.forEach(record => {
+                const name = getField(record, 'Name', 'name', '名称');
+                const nameEn = getField(record, 'Name_EN', 'NameEN', 'name_en');
+                const displayName = nameEn ? `${name} (${nameEn})` : name;
+                options += `<option value="${name}">${displayName}</option>`;
+            });
+            return options;
+        }
+        
+        // Add exercise field
+        function addExerciseField() {
+            const index = exerciseFieldCounter++;
+            const exercisesList = document.getElementById('exercisesList');
+            
+            const exerciseDiv = document.createElement('div');
+            exerciseDiv.id = `exercise-${index}`;
+            exerciseDiv.className = 'exercise-item';
+            exerciseDiv.style.cssText = 'background: rgba(74, 144, 226, 0.05); padding: 1.5rem; border-radius: 12px; border: 2px solid rgba(74, 144, 226, 0.2); position: relative;';
+            
+            exerciseDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div style="font-weight: 600; color: #4A90E2;">动作 ${index + 1}</div>
+                    ${index > 0 ? `<button type="button" onclick="removeExerciseField(${index})" style="background: none; border: none; color: #E74C3C; font-size: 1.5rem; cursor: pointer; padding: 0; line-height: 1;">×</button>` : ''}
+                </div>
+                
+                <!-- Movement Selection -->
+                <div style="margin-bottom: 1rem;">
+                    <select class="exercise-select" data-index="${index}" onchange="handleExerciseSelect(${index})" style="width: 100%; padding: 0.75rem; border: 2px solid #E8E0D5; border-radius: 8px; font-size: 1rem; margin-bottom: 0.5rem;">
+                        ${getMovementOptions()}
+                    </select>
+                    <input type="text" class="exercise-custom" data-index="${index}" placeholder="或输入自定义动作" style="width: 100%; padding: 0.75rem; border: 2px solid #E8E0D5; border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <!-- Exercise Type Selection -->
+                <div style="margin-bottom: 1rem;">
+                    <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.5rem;">训练类型</label>
+                    <select class="exercise-type" data-index="${index}" onchange="handleExerciseTypeChange(${index})" style="width: 100%; padding: 0.75rem; border: 2px solid #E8E0D5; border-radius: 8px; font-size: 1rem;">
+                        <option value="weight">重量训练（组 × 次数）</option>
+                        <option value="static">静态支撑（组 × 时长）</option>
+                        <option value="cardio">有氧运动（时长/距离）</option>
+                    </select>
+                </div>
+                
+                <!-- Weight Training Fields (Default) -->
+                <div class="weight-fields-${index}" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">负重</label>
+                        <select class="exercise-weight-type" data-index="${index}" onchange="handleWeightTypeChange(${index})" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-bottom: 0.25rem;">
+                            <option value="weighted">输入重量</option>
+                            <option value="bodyweight">自重</option>
+                        </select>
+                        <input type="number" class="exercise-weight" data-index="${index}" placeholder="0" step="0.5" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">单位</label>
+                        <select class="exercise-unit" data-index="${index}" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-top: 1.8rem;">
+                            <option value="KG">KG</option>
+                            <option value="LB">LB</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">组数</label>
+                        <input type="number" class="exercise-sets" data-index="${index}" placeholder="0" min="1" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-top: 1.8rem;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">次数</label>
+                        <input type="number" class="exercise-reps" data-index="${index}" placeholder="0" min="1" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-top: 1.8rem;">
+                    </div>
+                </div>
+                
+                <!-- Static Exercise Fields (Hidden by default) -->
+                <div class="static-fields-${index}" style="display: none; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">负重</label>
+                        <select class="exercise-weight-type-static" data-index="${index}" onchange="handleWeightTypeChange(${index})" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-bottom: 0.25rem;">
+                            <option value="bodyweight">自重</option>
+                            <option value="weighted">负重</option>
+                        </select>
+                        <input type="number" class="exercise-weight-static" data-index="${index}" placeholder="0" step="0.5" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; display: none;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">单位</label>
+                        <select class="exercise-unit-static" data-index="${index}" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-top: 1.8rem; display: none;">
+                            <option value="KG">KG</option>
+                            <option value="LB">LB</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">组数</label>
+                        <input type="number" class="exercise-sets-static" data-index="${index}" placeholder="0" min="1" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-top: 1.8rem;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">时长(秒)</label>
+                        <input type="number" class="exercise-duration-static" data-index="${index}" placeholder="60" min="1" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px; margin-top: 1.8rem;">
+                    </div>
+                </div>
+                
+                <!-- Cardio Fields (Hidden by default) -->
+                <div class="cardio-fields-${index}" style="display: none; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">时长(分钟)</label>
+                        <input type="number" class="exercise-duration-cardio" data-index="${index}" placeholder="30" min="1" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">距离(可选)</label>
+                        <input type="number" class="exercise-distance" data-index="${index}" placeholder="5" step="0.1" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.9rem; color: #8B7D6B; display: block; margin-bottom: 0.25rem;">单位</label>
+                        <select class="exercise-distance-unit" data-index="${index}" style="width: 100%; padding: 0.5rem; border: 2px solid #E8E0D5; border-radius: 8px;">
+                            <option value="KM">公里</option>
+                            <option value="MI">英里</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            
+            exercisesList.appendChild(exerciseDiv);
+        }
+        
+        // Remove exercise field
+        function removeExerciseField(index) {
+            const exerciseDiv = document.getElementById(`exercise-${index}`);
+            if (exerciseDiv) {
+                exerciseDiv.remove();
+            }
+        }
+        
+        // Handle exercise select change
+        function handleExerciseSelect(index) {
+            const select = document.querySelector(`.exercise-select[data-index="${index}"]`);
+            const customInput = document.querySelector(`.exercise-custom[data-index="${index}"]`);
+            
+            if (select.value) {
+                customInput.value = '';
+                customInput.disabled = true;
+            } else {
+                customInput.disabled = false;
+            }
+        }
+        
+        // Handle exercise type change
+        function handleExerciseTypeChange(index) {
+            const typeSelect = document.querySelector(`.exercise-type[data-index="${index}"]`);
+            const type = typeSelect.value;
+            
+            // Hide all field groups
+            const weightFields = document.querySelector(`.weight-fields-${index}`);
+            const staticFields = document.querySelector(`.static-fields-${index}`);
+            const cardioFields = document.querySelector(`.cardio-fields-${index}`);
+            
+            weightFields.style.display = 'none';
+            staticFields.style.display = 'none';
+            cardioFields.style.display = 'none';
+            
+            // Show the selected field group
+            if (type === 'weight') {
+                weightFields.style.display = 'grid';
+            } else if (type === 'static') {
+                staticFields.style.display = 'grid';
+            } else if (type === 'cardio') {
+                cardioFields.style.display = 'grid';
+            }
+        }
+        
+        // Handle weight type change
+        function handleWeightTypeChange(index) {
+            // For weight training
+            const weightTypeSelect = document.querySelector(`.exercise-weight-type[data-index="${index}"]`);
+            if (weightTypeSelect) {
+                const weightInput = document.querySelector(`.exercise-weight[data-index="${index}"]`);
+                const unitSelect = document.querySelector(`.exercise-unit[data-index="${index}"]`);
+                
+                if (weightTypeSelect.value === 'bodyweight') {
+                    weightInput.style.display = 'none';
+                    weightInput.value = '';
+                    unitSelect.disabled = true;
+                    unitSelect.style.opacity = '0.5';
+                } else {
+                    weightInput.style.display = 'block';
+                    unitSelect.disabled = false;
+                    unitSelect.style.opacity = '1';
+                }
+            }
+            
+            // For static exercises
+            const weightTypeSelectStatic = document.querySelector(`.exercise-weight-type-static[data-index="${index}"]`);
+            if (weightTypeSelectStatic) {
+                const weightInputStatic = document.querySelector(`.exercise-weight-static[data-index="${index}"]`);
+                const unitSelectStatic = document.querySelector(`.exercise-unit-static[data-index="${index}"]`);
+                
+                if (weightTypeSelectStatic.value === 'bodyweight') {
+                    weightInputStatic.style.display = 'none';
+                    weightInputStatic.value = '';
+                    unitSelectStatic.style.display = 'none';
+                } else {
+                    weightInputStatic.style.display = 'block';
+                    unitSelectStatic.style.display = 'block';
+                }
+            }
+        }
+        
+        // Save workout record
+        async function saveWorkoutRecord(event) {
+            event.preventDefault();
+            
+            const date = document.getElementById('workoutDate').value;
+            const duration = document.getElementById('duration').value;
+            const notes = document.getElementById('notes').value;
+            
+            // Collect all exercises
+            const exercises = [];
+            const exerciseItems = document.querySelectorAll('.exercise-item');
+            
+            exerciseItems.forEach((item, idx) => {
+                const index = item.id.split('-')[1];
+                const select = item.querySelector('.exercise-select');
+                const customInput = item.querySelector('.exercise-custom');
+                const typeSelect = item.querySelector('.exercise-type');
+                
+                const movement = select.value || customInput.value;
+                const type = typeSelect.value;
+                
+                if (movement) {
+                    const exerciseData = {
+                        movement: movement,
+                        type: type
+                    };
+                    
+                    if (type === 'weight') {
+                        // Weight training
+                        const weightTypeSelect = item.querySelector('.exercise-weight-type');
+                        const weightInput = item.querySelector('.exercise-weight');
+                        const unit = item.querySelector('.exercise-unit');
+                        const sets = item.querySelector('.exercise-sets');
+                        const reps = item.querySelector('.exercise-reps');
+                        
+                        if (weightTypeSelect.value === 'bodyweight') {
+                            exerciseData.weight = '自重';
+                            exerciseData.unit = null;
+                        } else {
+                            exerciseData.weight = weightInput.value ? parseFloat(weightInput.value) : null;
+                            exerciseData.unit = unit.value;
+                        }
+                        exerciseData.sets = sets.value ? parseInt(sets.value) : null;
+                        exerciseData.reps = reps.value ? parseInt(reps.value) : null;
+                        
+                    } else if (type === 'static') {
+                        // Static exercise
+                        const weightTypeSelect = item.querySelector('.exercise-weight-type-static');
+                        const weightInput = item.querySelector('.exercise-weight-static');
+                        const unit = item.querySelector('.exercise-unit-static');
+                        const sets = item.querySelector('.exercise-sets-static');
+                        const duration = item.querySelector('.exercise-duration-static');
+                        
+                        if (weightTypeSelect.value === 'bodyweight') {
+                            exerciseData.weight = '自重';
+                            exerciseData.unit = null;
+                        } else {
+                            exerciseData.weight = weightInput.value ? parseFloat(weightInput.value) : null;
+                            exerciseData.unit = unit.value;
+                        }
+                        exerciseData.sets = sets.value ? parseInt(sets.value) : null;
+                        exerciseData.duration = duration.value ? parseInt(duration.value) : null; // in seconds
+                        
+                    } else if (type === 'cardio') {
+                        // Cardio exercise
+                        const duration = item.querySelector('.exercise-duration-cardio');
+                        const distance = item.querySelector('.exercise-distance');
+                        const distanceUnit = item.querySelector('.exercise-distance-unit');
+                        
+                        exerciseData.duration = duration.value ? parseInt(duration.value) : null; // in minutes
+                        exerciseData.distance = distance.value ? parseFloat(distance.value) : null;
+                        exerciseData.distanceUnit = distanceUnit.value;
+                    }
+                    
+                    exercises.push(exerciseData);
+                }
+            });
+            
+            if (exercises.length === 0) {
+                alert('请至少添加一个训练动作');
+                return;
+            }
+            
+            try {
+                // Get current user ID
+                const userId = getCurrentUserId();
+                const username = getCurrentUsername();
+                
+                const data = {
+                    fields: {
+                        Date: date,
+                        Exercises: JSON.stringify(exercises),
+                        Duration: duration,
+                        Notes: notes,
+                        UserID: userId  // Add user ID for privacy
+                    }
+                };
+                
+                console.log('Saving workout data:', data);
+                console.log('User:', username, 'ID:', userId);
+                
+                const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_CONFIG.baseId}/${AIRTABLE_CONFIG.tables.workout}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${AIRTABLE_CONFIG.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Airtable error:', errorData);
+                    throw new Error(`保存失败 (${response.status}): ${errorData.error?.message || '未知错误'}`);
+                }
+                
+                const result = await response.json();
+                console.log('Save successful:', result);
+                
+                // Close modal and reload workout log
+                closeAddWorkoutModal();
+                loadWorkoutLog();
+                
+                alert('训练记录已保存！');
+            } catch (error) {
+                console.error('Error saving workout:', error);
+                alert(`保存失败：${error.message}\n请检查：\n1. Airtable字段是否正确\n2. 网络连接是否正常\n3. API Token是否有效`);
+            }
+        }
+        
+        // Add form submit event listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('addWorkoutForm');
+            if (form) {
+                form.addEventListener('submit', saveWorkoutRecord);
+            }
+        });
+        
+        // Load Workout Log
+        async function loadWorkoutLog() {
+            const container = document.getElementById('workout-list');
+            
+            // Get current user
+            const userId = getCurrentUserId();
+            const username = getCurrentUsername();
+            
+            console.log('Loading workout log for user:', username, 'ID:', userId);
+            
+            try {
+                // Fetch all records first (Airtable filter in URL has issues with API)
+                const allRecords = await fetchAirtableData(AIRTABLE_CONFIG.tables.workout);
+                
+                // Filter records by current user ID
+                const records = allRecords.filter(record => {
+                    const recordUserId = getField(record, 'UserID', 'user_id', 'userId');
+                    return recordUserId === userId;
+                });
+                
+                workoutRecords = records;
+                
+                console.log(`Loaded ${records.length} records for user: ${username}`);
+                
+                if (records.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 3rem; color: #8B7D6B;">
+                            <p style="font-size: 1.2rem; margin-bottom: 1rem;">还没有训练记录</p>
+                            <p>点击右上角的 "Add Record" 开始记录你的训练吧！ 💪</p>
+                            <p style="font-size: 0.9rem; margin-top: 1rem; color: #B8A898;">当前用户：${username}</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Sort by date (newest first)
+                records.sort((a, b) => {
+                    const dateA = getField(a, 'Date', 'date', '日期');
+                    const dateB = getField(b, 'Date', 'date', '日期');
+                    return new Date(dateB) - new Date(dateA);
+                });
+                
+                let html = '';
+                records.forEach(record => {
+                    const date = getField(record, 'Date', 'date', '日期');
+                    const exercisesStr = getField(record, 'Exercises', 'exercises', '动作');
+                    const duration = getField(record, 'Duration', 'duration', '时长');
+                    const notes = getField(record, 'Notes', 'notes', '备注');
+                    
+                    // Parse exercises JSON
+                    let exercises = [];
+                    try {
+                        exercises = exercisesStr ? JSON.parse(exercisesStr) : [];
+                    } catch (e) {
+                        console.error('Error parsing exercises:', e);
+                    }
+                    
+                    // Format date
+                    const formattedDate = date ? new Date(date).toLocaleDateString('zh-CN', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    }) : '';
+                    
+                    html += `
+                        <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; border: 1px solid rgba(44, 36, 22, 0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <div style="margin-bottom: 1.5rem;">
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">📅 ${formattedDate}</div>
+                                <h3 style="font-size: 1.3rem; font-weight: 600; color: #2C2416;">训练日志</h3>
+                            </div>
+                            
+                            ${exercises.length > 0 ? `
+                                <div style="margin-bottom: 1.5rem;">
+                                    ${exercises.map((ex, idx) => {
+                                        // Build display string based on exercise type
+                                        let displayStr = '';
+                                        
+                                        if (ex.type === 'weight') {
+                                            // Weight training: weight × sets × reps
+                                            const parts = [];
+                                            if (ex.weight === '自重' || ex.weight) {
+                                                const weightStr = ex.weight === '自重' ? '自重' : `${ex.weight}${ex.unit || 'KG'}`;
+                                                parts.push(weightStr);
+                                            }
+                                            if (ex.sets) parts.push(`${ex.sets}组`);
+                                            if (ex.reps) parts.push(`${ex.reps}次`);
+                                            displayStr = parts.join(' × ');
+                                            
+                                        } else if (ex.type === 'static') {
+                                            // Static exercise: [weight] × sets × duration
+                                            const parts = [];
+                                            if (ex.weight === '自重' || ex.weight) {
+                                                const weightStr = ex.weight === '自重' ? '自重' : `${ex.weight}${ex.unit || 'KG'}`;
+                                                parts.push(weightStr);
+                                            }
+                                            if (ex.sets) parts.push(`${ex.sets}组`);
+                                            if (ex.duration) parts.push(`${ex.duration}秒`);
+                                            displayStr = parts.join(' × ');
+                                            
+                                        } else if (ex.type === 'cardio') {
+                                            // Cardio: duration [+ distance]
+                                            const parts = [];
+                                            if (ex.duration) parts.push(`${ex.duration}分钟`);
+                                            if (ex.distance) parts.push(`${ex.distance}${ex.distanceUnit || 'KM'}`);
+                                            displayStr = parts.join(' • ');
+                                        }
+                                        
+                                        // Determine background color based on type
+                                        const bgColor = ex.type === 'weight' ? 'rgba(74, 144, 226, 0.05)' :
+                                                       ex.type === 'static' ? 'rgba(156, 39, 176, 0.05)' :
+                                                       'rgba(76, 175, 80, 0.05)';
+                                        const borderColor = ex.type === 'weight' ? '#4A90E2' :
+                                                           ex.type === 'static' ? '#9C27B0' :
+                                                           '#4CAF50';
+                                        const textColor = ex.type === 'weight' ? '#4A90E2' :
+                                                         ex.type === 'static' ? '#9C27B0' :
+                                                         '#4CAF50';
+                                        
+                                        // Type label
+                                        const typeLabel = ex.type === 'weight' ? '💪 重量' :
+                                                         ex.type === 'static' ? '⏱️ 静态' :
+                                                         '🏃 有氧';
+                                        
+                                        return `
+                                            <div style="background: ${bgColor}; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem; border-left: 3px solid ${borderColor};">
+                                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                                                    <div style="font-weight: 600; color: #2C2416;">
+                                                        ${idx + 1}. ${ex.movement}
+                                                    </div>
+                                                    <div style="font-size: 0.75rem; color: ${textColor}; background: rgba(255,255,255,0.7); padding: 0.25rem 0.5rem; border-radius: 12px;">
+                                                        ${typeLabel}
+                                                    </div>
+                                                </div>
+                                                ${displayStr ? `
+                                                    <div style="color: ${textColor}; font-size: 0.95rem;">
+                                                        ${displayStr}
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            ` : ''}
+                            
+                            ${duration ? `
+                                <div style="background: rgba(139, 157, 131, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                    <span style="color: #8B7D6B; font-weight: 600;">⏱️ 训练日时长：</span>
+                                    <span style="font-weight: 600; color: #2C2416;">${duration}</span>
+                                </div>
+                            ` : ''}
+                            
+                            ${notes ? `
+                                <div style="background: rgba(139, 125, 107, 0.1); padding: 1rem; border-radius: 8px;">
+                                    <div style="font-size: 0.9rem; color: #8B7D6B; font-weight: 600; margin-bottom: 0.5rem;">💭 备注</div>
+                                    <div style="color: #5C4F3D; white-space: pre-wrap;">${notes}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h3>❌ 加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+                // Load Lessons
+        async function loadLessons() {
+            const container = document.getElementById('lesson-content');
+            
+            try {
+                const records = await fetchAirtableData(AIRTABLE_CONFIG.tables.lesson);
+                
+                if (records.length === 0) {
+                    container.innerHTML = '<div class="loading">暂无课程内容</div>';
+                    return;
+                }
+
+                let html = '';
+                records.forEach(record => {
+                    const title = getField(record, 'Title', 'title', '标题');
+                    const titleEn = getField(record, 'Title_EN', 'TitleEN', 'title_en');
+                    const description = getField(record, 'Description', 'description', '描述');
+                    const category = getField(record, 'Category', 'category', '类别');
+                    const duration = getField(record, 'Duration', 'duration', '时长');
+                    const image = getField(record, 'Image', 'image', '图片');
+
+                    html += `
+                        <div class="content-card">
+                           <div class="card-image">
+    ${image && image.length > 0 && image[0].url 
+        ? `<img src="${image[0].url}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">` 
+        : `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #8B7D6B; font-style: italic;">[ 课程封面 ]</div>`
+    }
+</div>
+                            <div class="card-content">
+                                ${category ? `<span class="badge" style="background: rgba(212, 165, 116, 0.2); color: #D4A574;">${category}</span>` : ''}
+                                <h3 class="card-title" style="margin-top: 1rem;">${title}</h3>
+                                ${titleEn ? `<p style="color: #8B7D6B; font-style: italic; margin-bottom: 1rem;">${titleEn}</p>` : ''}
+                                ${description ? `<p style="color: #5C4F3D;">${description}</p>` : ''}
+                                ${duration ? `<div style="color: #8B7D6B; margin-top: 1rem; font-size: 0.9rem;">⏱ ${duration}</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h3>❌ 加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load Scents
+        // Store scent records globally for detail view
+        let scentRecords = [];
+
+        async function loadScents() {
+            const container = document.getElementById('scent-content');
+            
+            try {
+                const records = await fetchAirtableData(AIRTABLE_CONFIG.tables.scent);
+                scentRecords = records; // Store for detail view
+                
+                if (records.length === 0) {
+                    container.innerHTML = '<div class="loading">暂无香氛数据</div>';
+                    return;
+                }
+
+                let html = '';
+                records.forEach((record, index) => {
+                    const name = getField(record, 'Name', 'name', '名称');
+                    const nameEn = getField(record, 'Name_EN', 'NameEN', 'name_en');
+                    const description = getField(record, 'Description', 'description', '描述');
+                    const mood = getField(record, 'Mood', 'mood', '适用场景');
+                    const notes = getField(record, 'Notes', 'notes', '香调');
+                    const image = getField(record, 'Image', 'image', '图片');
+
+                    html += `
+                        <div class="content-card" onclick="showScentDetail(${index})" style="cursor: pointer;">
+                            <div class="card-image" style="background: linear-gradient(135deg, rgba(166, 124, 158, 0.2) 0%, rgba(166, 124, 158, 0.1) 100%);">
+                                ${image && image.length > 0 && image[0].url 
+                                    ? `<img src="${image[0].url}" alt="${name}">` 
+                                    : `<div>[ ${name} ]</div>`
+                                }
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">${name}</h3>
+                                ${nameEn ? `<p style="color: #8B7D6B; font-style: italic; margin-bottom: 1rem;">${nameEn}</p>` : ''}
+                                ${notes ? `<div style="margin-bottom: 1rem;">${typeof notes === 'string' ? notes.split(',').map(n => `<span class="badge" style="background: rgba(166, 124, 158, 0.2); color: #A67C9E;">${n.trim()}</span>`).join('') : ''}</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h3>❌ 加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Show scent detail
+        function showScentDetail(index) {
+            const record = scentRecords[index];
+            if (!record) return;
+
+            const name = getField(record, 'Name', 'name', '名称');
+            const image = getField(record, 'Image', 'image', '图片');
+            const season = getField(record, 'Season', 'season', '季节');
+            const contentCategory = getField(record, 'Content Category', 'ContentCategory', 'content_category', '内容类别');
+            const scentType = getField(record, 'Scent Type', 'ScentType', 'scent_type', '香型');
+            const shortDescription = getField(record, 'Short Description', 'ShortDescription', 'short_description', '简短描述');
+            const keyPoints = getField(record, 'Key Points', 'KeyPoints', 'key_points', '关键点');
+            const priceRange = getField(record, 'Price Range', 'PriceRange', 'price_range', '价格范围');
+            const brand = getField(record, 'Brand', 'brand', '品牌');
+            const videoUrl = getField(record, 'Video URL', 'VideoURL', 'video_url', '视频');
+
+            // Update title
+            document.getElementById('scent-detail-title').textContent = name;
+
+            // Build detail content
+            let html = `
+                <div style="background: #FFF; border-radius: 24px; padding: 3rem; border: 1px solid rgba(44, 36, 22, 0.08);">
+                    ${image && image.length > 0 && image[0].url ? `
+                        <div style="width: 100%; max-width: 500px; margin: 0 auto 2rem;">
+                            <img src="${image[0].url}" alt="${name}" style="width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                        </div>
+                    ` : ''}
+                    
+                    <h2 style="font-size: 2.5rem; font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; color: #2C2416; text-align: center;">${name}</h2>
+                    
+                    ${brand ? `
+                        <p style="font-size: 1.1rem; color: #A67C9E; font-weight: 600; margin-bottom: 1rem; text-align: center;">品牌：${brand}</p>
+                    ` : ''}
+                    
+                    ${shortDescription ? `
+                        <div style="background: rgba(166, 124, 158, 0.1); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                            <p style="font-size: 1.1rem; line-height: 1.8; color: #5C4F3D; margin: 0; text-align: center;">${shortDescription}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- Quick Info Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        ${season ? `
+                            <div style="background: rgba(139, 157, 131, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🍂</div>
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">季节</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416;">${season}</div>
+                            </div>
+                        ` : ''}
+                        
+                        ${contentCategory ? `
+                            <div style="background: rgba(166, 124, 158, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📂</div>
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">内容类别</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416;">${contentCategory}</div>
+                            </div>
+                        ` : ''}
+                        
+                        ${scentType ? `
+                            <div style="background: rgba(212, 165, 116, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌸</div>
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">香型</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416;">${scentType}</div>
+                            </div>
+                        ` : ''}
+                        
+                        ${priceRange ? `
+                            <div style="background: rgba(198, 125, 92, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">价格范围</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416;">${priceRange}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <!-- Key Points Section -->
+                    ${keyPoints ? `
+                        <div style="background: rgba(166, 124, 158, 0.05); padding: 2rem; border-radius: 16px; margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; color: #A67C9E; text-align: center;">✨ 关键亮点</h3>
+                            <div style="background: rgba(166, 124, 158, 0.1); padding: 1.5rem; border-radius: 12px;">
+                                <p style="font-size: 1.05rem; line-height: 1.8; color: #5C4F3D; white-space: pre-wrap; margin: 0;">${keyPoints}</p>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${videoUrl ? `
+                        <div style="margin-bottom: 2rem; text-align: center;">
+                            <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: #A67C9E;">🎥 视频介绍</h3>
+                            <a href="${videoUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(135deg, #A67C9E 0%, #957090 100%); color: #FFF; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 12px rgba(166, 124, 158, 0.3);">
+                                <span style="font-size: 1.5rem;">▶️</span>
+                                观看视频
+                            </a>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(44, 36, 22, 0.08); text-align: center;">
+                        <button onclick="showPage('scent')" style="background: linear-gradient(135deg, rgba(166, 124, 158, 0.1) 0%, rgba(166, 124, 158, 0.05) 100%); color: #A67C9E; padding: 1rem 2.5rem; border-radius: 50px; border: 2px solid rgba(166, 124, 158, 0.3); font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s;">
+                            ← 返回香氛列表
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('scent-detail-content').innerHTML = html;
+            showPage('scent-detail');
+        }
+
+        // Store recipe records globally for detail view
+        let recipeRecords = [];
+
+        // Load Recipes
+        async function loadRecipes() {
+            const container = document.getElementById('recipe-content');
+            
+            try {
+                const records = await fetchAirtableData(AIRTABLE_CONFIG.tables.recipe);
+                recipeRecords = records; // Store for detail view
+                
+                if (records.length === 0) {
+                    container.innerHTML = '<div class="loading">暂无食谱数据</div>';
+                    return;
+                }
+
+                let html = '';
+                records.forEach((record, index) => {
+                    const name = getField(record, 'Name', 'name', '名称');
+                    const nameEn = getField(record, 'Name_EN', 'NameEN', 'name_en');
+                    const image = getField(record, 'Image', 'image', '图片');
+
+                    html += `
+                        <div class="content-card" onclick="showRecipeDetail(${index})" style="cursor: pointer;">
+                            <div class="card-image">
+                                ${image && image.length > 0 && image[0].url 
+                                    ? `<img src="${image[0].url}" alt="${name}">` 
+                                    : `<div>[ ${name} ]</div>`
+                                }
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">${name}</h3>
+                                ${nameEn ? `<p style="color: #8B7D6B; font-style: italic;">${nameEn}</p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h3>❌ 加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Show recipe detail
+        function showRecipeDetail(index) {
+            const record = recipeRecords[index];
+            if (!record) return;
+
+            const name = getField(record, 'Name', 'name', '名称');
+            const nameEn = getField(record, 'Name_EN', 'NameEN', 'name_en');
+            const image = getField(record, 'Image', 'image', '图片');
+            const category = getField(record, 'Category', 'category', '类别');
+            const ingredient = getField(record, 'Ingredient', 'ingredient', 'Ingredients', 'ingredients', '食材');
+            const cookTime = getField(record, 'Cook Time', 'CookTime', 'cook_time', '烹饪时间', '时间');
+            const difficulty = getField(record, 'Difficulty', 'difficulty', '难度');
+            const review = getField(record, '实操测评', 'Review', 'review', 'Practical Review', 'Test Review', '测评');
+            const steps = getField(record, 'Steps', 'steps', '步骤');
+            const recipeVideo = getField(record, 'Recipe', 'recipe', 'Recipe URL', 'RecipeURL', 'Video URL', 'VideoURL', 'video_url', '视频');
+            const protein = getField(record, 'Protein', 'protein', '蛋白质');
+            const carbs = getField(record, 'Carbs', 'carbs', 'Carbohydrates', '碳水');
+            const fat = getField(record, 'Fat', 'fat', '脂肪');
+            const cals = getField(record, 'Cals', 'cals', 'Calories', 'calories', '卡路里');
+            const notes = getField(record, 'Notes', 'notes', '备注');
+
+            // Debug logging
+            console.log('=== Recipe Detail Debug ===');
+            console.log('Name:', name);
+            console.log('Cals:', cals);
+            console.log('Protein:', protein);
+            console.log('Carbs:', carbs);
+            console.log('Fat:', fat);
+            console.log('Category:', category);
+            console.log('Cook time:', cookTime);
+            console.log('Difficulty:', difficulty);
+            console.log('Review:', review);
+            console.log('Ingredient:', ingredient ? 'Yes' : 'No');
+            console.log('Steps:', steps ? 'Yes' : 'No');
+            console.log('Notes:', notes ? 'Yes' : 'No');
+            console.log('Recipe Video:', recipeVideo ? 'Yes' : 'No');
+            console.log('=========================');
+
+            // Update title
+            document.getElementById('recipe-detail-title').textContent = name;
+
+            // Build detail content
+            let html = `
+                <div style="background: #FFF; border-radius: 24px; padding: 3rem; border: 1px solid rgba(44, 36, 22, 0.08);">
+                    ${image && image.length > 0 && image[0].url ? `
+                        <div style="width: 100%; max-width: 600px; margin: 0 auto 2rem;">
+                            <img src="${image[0].url}" alt="${name}" style="width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                        </div>
+                    ` : ''}
+                    
+                    <h2 style="font-size: 2.5rem; font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; color: #2C2416; text-align: center;">${name}</h2>
+                    ${nameEn ? `<p style="font-size: 1.3rem; color: #C67D5C; font-style: italic; margin-bottom: 2rem; text-align: center;">${nameEn}</p>` : ''}
+                    
+                    <!-- Info Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        ${category ? `
+                            <div style="background: rgba(139, 157, 131, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🍽️</div>
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">类别</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416;">${category}</div>
+                            </div>
+                        ` : ''}
+                        
+                        ${cookTime ? `
+                            <div style="background: rgba(198, 125, 92, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏱️</div>
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">烹饪时间</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416;">${cookTime}</div>
+                            </div>
+                        ` : ''}
+                        
+                        ${difficulty ? `
+                            <div style="background: rgba(212, 165, 116, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">👨‍🍳</div>
+                                <div style="font-size: 0.9rem; color: #8B7D6B; margin-bottom: 0.5rem;">难度</div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #2C2416;">${difficulty}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <!-- Ingredients Section -->
+                    ${ingredient ? `
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: #C67D5C;">🥘 食材清单</h3>
+                            <div style="background: rgba(198, 125, 92, 0.05); padding: 1.5rem; border-radius: 12px;">
+                                <p style="font-size: 1.05rem; line-height: 1.8; color: #5C4F3D; white-space: pre-wrap;">${ingredient}</p>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- Steps Section -->
+                    ${steps ? `
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: #C67D5C;">📝 制作步骤</h3>
+                            <div style="background: rgba(198, 125, 92, 0.05); padding: 1.5rem; border-radius: 12px;">
+                                <p style="font-size: 1.05rem; line-height: 1.8; color: #5C4F3D; white-space: pre-wrap;">${steps}</p>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                   <!-- Practical Review Video -->
+                    ${review ? `
+                         <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: #C67D5C;">⭐ 实操测评视频</h3>
+                            <div style="text-align: center;">
+                                <a href="${review}" target="_blank" style="display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(135deg, #D4A574 0%, #C69563 100%); color: #FFF; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);">
+                                    <span style="font-size: 1.5rem;">▶️</span>
+                                    观看实操测评
+                                </a>
+                            </div>
+                         </div>
+                    ` : ''}
+                    
+                    <!-- Nutrition Facts -->
+                    ${cals || protein || carbs || fat ? `
+                    <div style="background: rgba(198, 125, 92, 0.05); padding: 2rem; border-radius: 16px; margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; color: #C67D5C; text-align: center;">📊 营养成分</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1.5rem;">
+                            ${cals ? `
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #C67D5C;">${cals}</div>
+                                    <div style="font-size: 0.9rem; color: #8B7D6B; margin-top: 0.5rem;">卡路里</div>
+                                </div>
+                            ` : ''}
+                            ${protein ? `
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #C67D5C;">${protein}</div>
+                                    <div style="font-size: 0.9rem; color: #8B7D6B; margin-top: 0.5rem;">蛋白质</div>
+                                </div>
+                            ` : ''}
+                            ${carbs ? `
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #C67D5C;">${carbs}</div>
+                                    <div style="font-size: 0.9rem; color: #8B7D6B; margin-top: 0.5rem;">碳水</div>
+                                </div>
+                            ` : ''}
+                            ${fat ? `
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #C67D5C;">${fat}</div>
+                                    <div style="font-size: 0.9rem; color: #8B7D6B; margin-top: 0.5rem;">脂肪</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <!-- Notes Section -->
+                    ${notes ? `
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: #C67D5C;">💭 备注</h3>
+                            <div style="background: rgba(139, 157, 131, 0.1); padding: 1.5rem; border-radius: 12px;">
+                                <p style="font-size: 1.05rem; line-height: 1.8; color: #5C4F3D; white-space: pre-wrap;">${notes}</p>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- Video Tutorial -->
+                    ${recipeVideo ? `
+                        <div style="margin-bottom: 2rem; text-align: center;">
+                            <h3 style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: #C67D5C;">🎥 视频教程</h3>
+                            <a href="${recipeVideo}" target="_blank" style="display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(135deg, #C67D5C 0%, #B06D4F 100%); color: #FFF; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 12px rgba(198, 125, 92, 0.3);">
+                                <span style="font-size: 1.5rem;">▶️</span>
+                                观看完整视频
+                            </a>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- Back Button -->
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(44, 36, 22, 0.08); text-align: center;">
+                        <button onclick="showPage('recipe')" style="background: linear-gradient(135deg, rgba(198, 125, 92, 0.1) 0%, rgba(198, 125, 92, 0.05) 100%); color: #C67D5C; padding: 1rem 2.5rem; border-radius: 50px; border: 2px solid rgba(198, 125, 92, 0.3); font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s;">
+                            ← 返回食谱列表
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('recipe-detail-content').innerHTML = html;
+            showPage('recipe-detail');
+        }
+
+        // Page navigation
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageName + '-page').classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Load data for the page
+            if (pageName === 'movement') {
+                loadMovementLibrary();
+            } else if (pageName === 'workout') {
+                checkUser();  // Check user first
+                loadWorkoutLog();
+            } else if (pageName === 'lesson') {
+                loadLessons();
+            } else if (pageName === 'scent') {
+                loadScents();
+            } else if (pageName === 'recipe') {
+                loadRecipes();
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
