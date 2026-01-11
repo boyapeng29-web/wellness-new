@@ -438,19 +438,34 @@
 
         .lesson-detail-content ul,
         .lesson-detail-content ol {
-            margin: 1rem 0 1.5rem 2rem;
-            line-height: 1.8;
+            margin: 1.5rem 0 2rem 0;
+            line-height: 1.9;
+            padding-left: 2rem;
         }
 
         .lesson-detail-content li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
         }
 
+        /* Nested lists with better indentation */
         .lesson-detail-content ul ul,
         .lesson-detail-content ol ol,
         .lesson-detail-content ul ol,
         .lesson-detail-content ol ul {
-            margin: 0.5rem 0 0.5rem 1.5rem;
+            margin: 0.75rem 0 0.75rem 0;
+            padding-left: 2rem;
+        }
+
+        /* Make nested list items more distinct */
+        .lesson-detail-content ul ul li {
+            list-style-type: circle;
+            color: #5C4F3D;
+        }
+
+        .lesson-detail-content ul ul ul li {
+            list-style-type: square;
+            color: #5C4F3D;
         }
 
         .lesson-detail-content h4 {
@@ -460,14 +475,122 @@
             color: #2C2416;
         }
 
+        /* Key takeaway box */
+        .lesson-detail-content .key-takeaway {
+            background: linear-gradient(135deg, rgba(198, 125, 92, 0.08) 0%, rgba(198, 125, 92, 0.04) 100%);
+            border-left: 4px solid #C67D5C;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
 
+        .lesson-detail-content .key-takeaway h3 {
+            color: #C67D5C;
+            margin-top: 0;
+        }
+
+        /* Action box */
+        .lesson-detail-content .action-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.04) 100%);
+            border-left: 4px solid #4CAF50;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .lesson-detail-content .action-box h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+
+        /* Warning/Important box */
+        .lesson-detail-content .warning-box {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.08) 0%, rgba(255, 152, 0, 0.04) 100%);
+            border-left: 4px solid #FF9800;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .lesson-detail-content .warning-box h3 {
+            color: #FF9800;
+            margin-top: 0;
+        }
+
+        /* Enhanced blockquote style */
         .lesson-detail-content blockquote {
             border-left: 4px solid #C67D5C;
-            padding-left: 1.5rem;
+            background: rgba(198, 125, 92, 0.05);
+            padding: 1.25rem 1.5rem;
             margin: 1.5rem 0;
             color: #5C4F3D;
             font-style: italic;
+            border-radius: 0 8px 8px 0;
         }
+
+        /* Highlight boxes for key takeaways */
+        .lesson-detail-content .highlight-box {
+            background: linear-gradient(135deg, rgba(198, 125, 92, 0.08) 0%, rgba(212, 165, 116, 0.08) 100%);
+            border: 2px solid rgba(198, 125, 92, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .lesson-detail-content .highlight-box h3,
+        .lesson-detail-content .highlight-box h4 {
+            color: #C67D5C;
+            margin-top: 0;
+        }
+
+        /* Action items / practical tips */
+        .lesson-detail-content .action-box {
+            background: linear-gradient(135deg, rgba(139, 157, 131, 0.1) 0%, rgba(139, 157, 131, 0.05) 100%);
+            border-left: 4px solid #8B9D83;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .lesson-detail-content .action-box h3,
+        .lesson-detail-content .action-box h4 {
+            color: #8B9D83;
+            margin-top: 0;
+        }
+
+        /* TL;DR / Quick summary box */
+        .lesson-detail-content .tldr-box {
+            background: linear-gradient(135deg, rgba(92, 79, 61, 0.1) 0%, rgba(92, 79, 61, 0.05) 100%);
+            border: 2px solid rgba(92, 79, 61, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.05rem;
+        }
+
+        .lesson-detail-content .tldr-box h3,
+        .lesson-detail-content .tldr-box h4 {
+            color: #5C4F3D;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        /* Better list styling */
+        .lesson-detail-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+
+        .lesson-detail-content ul > li {
+            padding-left: 0.5rem;
+        }
+
+        /* Better spacing for nested content */
+        .lesson-detail-content li > ul,
+        .lesson-detail-content li > ol {
+            margin-top: 0.5rem;
+        }
+
 
         .lesson-detail-content code {
             background: rgba(198, 125, 92, 0.1);
@@ -1701,6 +1824,19 @@
 
             // Convert markdown-like content to HTML (enhanced for Notion format)
             let htmlContent = content;
+            
+            // Detect and wrap special content blocks BEFORE other markdown conversions
+            // TL;DR / Quick Summary blocks (starts with 💡 🎯 or "TL;DR")
+            htmlContent = htmlContent.replace(/^(💡|🎯|TL;DR:?)\s*(.+?)(?=\n##|\n###|$)/gms, 
+                '<div class="tldr-box"><h4>$1 快速要点</h4>$2</div>');
+            
+            // Action / Practical Application blocks (starts with ✅ 💪 or "实践应用")
+            htmlContent = htmlContent.replace(/^(✅|💪|实践应用:?)\s*(.+?)(?=\n##|\n###|$)/gms,
+                '<div class="action-box"><h4>$1 实践建议</h4>$2</div>');
+            
+            // Key Findings / Highlights (starts with ⚡ 🔑 or "核心要点")
+            htmlContent = htmlContent.replace(/^(⚡|🔑|核心要点:?)\s*(.+?)(?=\n##|\n###|$)/gms,
+                '<div class="highlight-box"><h4>$1 重点提示</h4>$2</div>');
             
             // Preserve emoji and special characters
             // Convert headers (must be done before other conversions)
