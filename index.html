@@ -292,6 +292,220 @@
                 padding: 1rem 1.5rem;
             }
         }
+
+        /* Daily Lesson Feed Styles */
+        .lesson-feed {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .lesson-item {
+            background: #FFF;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(44, 36, 22, 0.08);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .lesson-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .lesson-item-content {
+            flex: 1;
+        }
+
+        .lesson-item-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .lesson-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #C67D5C 0%, #D4A574 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .lesson-author {
+            font-size: 0.95rem;
+            color: #2C2416;
+            font-weight: 500;
+        }
+
+        .lesson-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2C2416;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #8B7D6B;
+            margin-top: 0.75rem;
+        }
+
+        .lesson-thumbnail {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(198, 125, 92, 0.1) 0%, rgba(198, 125, 92, 0.05) 100%);
+        }
+
+        .lesson-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lesson Detail Page */
+        .lesson-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #FFF;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .lesson-detail-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(44, 36, 22, 0.08);
+        }
+
+        .lesson-detail-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2C2416;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.3;
+        }
+
+        .lesson-detail-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            color: #8B7D6B;
+        }
+
+        .lesson-detail-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2C2416;
+        }
+
+        .lesson-detail-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: #2C2416;
+        }
+
+        .lesson-detail-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #2C2416;
+        }
+
+        .lesson-detail-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .lesson-detail-content ul,
+        .lesson-detail-content ol {
+            margin: 1rem 0 1.5rem 2rem;
+            line-height: 1.8;
+        }
+
+        .lesson-detail-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .lesson-detail-content ul ul,
+        .lesson-detail-content ol ol,
+        .lesson-detail-content ul ol,
+        .lesson-detail-content ol ul {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+
+        .lesson-detail-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.5rem 0;
+            color: #2C2416;
+        }
+
+
+        .lesson-detail-content blockquote {
+            border-left: 4px solid #C67D5C;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: #5C4F3D;
+            font-style: italic;
+        }
+
+        .lesson-detail-content code {
+            background: rgba(198, 125, 92, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .lesson-detail-content pre {
+            background: #F4EBD9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .lesson-detail-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .lesson-item {
+                flex-direction: column;
+            }
+
+            .lesson-thumbnail {
+                width: 100%;
+                height: 200px;
+            }
+
+            .lesson-detail-title {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -486,13 +700,26 @@
 
     <!-- Daily Lesson Page -->
     <div id="lesson-page" class="page-container">
-        <div class="subpage-header">
-            <button class="back-button" onclick="showPage('home')">← 返回首页</button>
-            <h1>Daily Lesson</h1>
-            <p style="font-size: 1.2rem; color: #5C4F3D;">探索"为什么"的科学，每日精选健身知识</p>
+        <!-- Lesson List View -->
+        <div id="lesson-list-view">
+            <div class="subpage-header">
+                <button class="back-button" onclick="showPage('home')">← 返回首页</button>
+                <h1>Daily Lesson</h1>
+                <p style="font-size: 1.2rem; color: #5C4F3D;">探索"为什么"的科学，每日精选健身知识</p>
+            </div>
+            <div id="lesson-content" class="lesson-feed">
+                <div class="loading">正在加载每日课程... 📚</div>
+            </div>
         </div>
-        <div id="lesson-content" class="content-grid">
-            <div class="loading">正在加载每日课程... 📚</div>
+
+        <!-- Lesson Detail View -->
+        <div id="lesson-detail-view" style="display: none;">
+            <div class="subpage-header">
+                <button class="back-button" onclick="backToLessonList()">← 返回列表</button>
+            </div>
+            <div id="lesson-detail-container">
+                <!-- Detail content will be inserted here -->
+            </div>
         </div>
     </div>
 
@@ -1375,11 +1602,15 @@
         }
 
                 // Load Lessons
+        // Store lesson records globally for detail view
+        let lessonRecords = [];
+
         async function loadLessons() {
             const container = document.getElementById('lesson-content');
             
             try {
                 const records = await fetchAirtableData(AIRTABLE_CONFIG.tables.lesson);
+                lessonRecords = records; // Store for detail view
                 
                 if (records.length === 0) {
                     container.innerHTML = '<div class="loading">暂无课程内容</div>';
@@ -1387,29 +1618,45 @@
                 }
 
                 let html = '';
-                records.forEach(record => {
+                records.forEach((record, index) => {
                     const title = getField(record, 'Title', 'title', '标题');
-                    const titleEn = getField(record, 'Title_EN', 'TitleEN', 'title_en');
-                    const description = getField(record, 'Description', 'description', '描述');
-                    const category = getField(record, 'Category', 'category', '类别');
-                    const duration = getField(record, 'Duration', 'duration', '时长');
-                    const image = getField(record, 'Image', 'image', '图片');
+                    const author = getField(record, 'Author', 'author', '作者') || 'Wellness Team';
+                    const readTime = getField(record, 'ReadTime', 'readTime', '阅读时长') || '5m read';
+                    const likes = getField(record, 'Likes', 'likes', '点赞数') || 0;
+                    const comments = getField(record, 'Comments', 'comments', '评论数') || 0;
+                    const thumbnail = getField(record, 'Thumbnail', 'thumbnail', '缩略图');
+                    const category = getField(record, 'Category', 'category', '分类');
+
+                    // Get first letter of author for avatar
+                    const authorInitial = author.charAt(0).toUpperCase();
+                    
+                    // Get thumbnail URL
+                    let thumbnailUrl = '';
+                    if (thumbnail && thumbnail.length > 0 && thumbnail[0].url) {
+                        thumbnailUrl = thumbnail[0].url;
+                    }
 
                     html += `
-                        <div class="content-card">
-                           <div class="card-image">
-    ${image && image.length > 0 && image[0].url 
-        ? `<img src="${image[0].url}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">` 
-        : `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #8B7D6B; font-style: italic;">[ 课程封面 ]</div>`
-    }
-</div>
-                            <div class="card-content">
-                                ${category ? `<span class="badge" style="background: rgba(212, 165, 116, 0.2); color: #D4A574;">${category}</span>` : ''}
-                                <h3 class="card-title" style="margin-top: 1rem;">${title}</h3>
-                                ${titleEn ? `<p style="color: #8B7D6B; font-style: italic; margin-bottom: 1rem;">${titleEn}</p>` : ''}
-                                ${description ? `<p style="color: #5C4F3D;">${description}</p>` : ''}
-                                ${duration ? `<div style="color: #8B7D6B; margin-top: 1rem; font-size: 0.9rem;">⏱ ${duration}</div>` : ''}
+                        <div class="lesson-item" onclick="showLessonDetail(${index})">
+                            <div class="lesson-item-content">
+                                <div class="lesson-item-header">
+                                    <div class="lesson-avatar">${authorInitial}</div>
+                                    <span class="lesson-author">${author}</span>
+                                </div>
+                                <h2 class="lesson-title">${title}</h2>
+                                <div class="lesson-meta">
+                                    <span>${readTime}</span>
+                                    <span>•</span>
+                                    <span>${likes} likes</span>
+                                    ${comments > 0 ? `<span>•</span><span>${comments} comments</span>` : ''}
+                                    ${category ? `<span>•</span><span style="color: #C67D5C;">${category}</span>` : ''}
+                                </div>
                             </div>
+                            ${thumbnailUrl ? `
+                                <div class="lesson-thumbnail">
+                                    <img src="${thumbnailUrl}" alt="${title}">
+                                </div>
+                            ` : ''}
                         </div>
                     `;
                 });
@@ -1423,6 +1670,138 @@
                     </div>
                 `;
             }
+        }
+
+        // Show lesson detail
+        function showLessonDetail(index) {
+            const record = lessonRecords[index];
+            if (!record) return;
+
+            // Hide list view, show detail view
+            document.getElementById('lesson-list-view').style.display = 'none';
+            document.getElementById('lesson-detail-view').style.display = 'block';
+
+            // Get fields
+            const title = getField(record, 'Title', 'title', '标题');
+            const author = getField(record, 'Author', 'author', '作者') || 'Wellness Team';
+            const readTime = getField(record, 'ReadTime', 'readTime', '阅读时长') || '5m read';
+            const likes = getField(record, 'Likes', 'likes', '点赞数') || 0;
+            const comments = getField(record, 'Comments', 'comments', '评论数') || 0;
+            const content = getField(record, 'Content', 'content', '内容') || '';
+            const publishDate = getField(record, 'PublishDate', 'publishDate', '发布日期');
+            const category = getField(record, 'Category', 'category', '分类');
+            const notionUrl = getField(record, 'NotionURL', 'notionUrl', 'notion链接');
+
+            // Format date
+            let dateStr = '';
+            if (publishDate) {
+                const date = new Date(publishDate);
+                dateStr = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+            }
+
+            // Convert markdown-like content to HTML (enhanced for Notion format)
+            let htmlContent = content;
+            
+            // Preserve emoji and special characters
+            // Convert headers (must be done before other conversions)
+            htmlContent = htmlContent.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+            htmlContent = htmlContent.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+            htmlContent = htmlContent.replace(/^#### (.*?)$/gm, '<h4>$1</h4>');
+            
+            // Convert lists
+            // Unordered lists with -
+            htmlContent = htmlContent.replace(/^- (.*?)$/gm, '<li>$1</li>');
+            // Unordered lists with •
+            htmlContent = htmlContent.replace(/^• (.*?)$/gm, '<li>$1</li>');
+            // Unordered lists with ○
+            htmlContent = htmlContent.replace(/^○ (.*?)$/gm, '<li style="list-style-type: circle; margin-left: 2rem;">$1</li>');
+            // Unordered lists with ■
+            htmlContent = htmlContent.replace(/^■ (.*?)$/gm, '<li style="list-style-type: square; margin-left: 2rem;">$1</li>');
+            
+            // Wrap consecutive <li> tags in <ul>
+            htmlContent = htmlContent.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
+                return '<ul>' + match + '</ul>';
+            });
+            
+            // Convert numbered lists
+            htmlContent = htmlContent.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
+            htmlContent = htmlContent.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
+                // Check if it's not already wrapped in ul
+                if (!match.includes('<ul>')) {
+                    return '<ol>' + match + '</ol>';
+                }
+                return match;
+            });
+            
+            // Convert text formatting
+            // Bold: **text** or __text__
+            htmlContent = htmlContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            htmlContent = htmlContent.replace(/__(.*?)__/g, '<strong>$1</strong>');
+            
+            // Italic: *text* or _text_ (but not if it's part of **)
+            htmlContent = htmlContent.replace(/(?<!\*)\*(?!\*)([^\*]+?)\*(?!\*)/g, '<em>$1</em>');
+            htmlContent = htmlContent.replace(/(?<!_)_(?!_)([^_]+?)_(?!_)/g, '<em>$1</em>');
+            
+            // Inline code: `code`
+            htmlContent = htmlContent.replace(/`([^`]+?)`/g, '<code>$1</code>');
+            
+            // Code blocks: ```code```
+            htmlContent = htmlContent.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+            
+            // Links: [text](url)
+            htmlContent = htmlContent.replace(/\[([^\]]+?)\]\(([^\)]+?)\)/g, '<a href="$2" target="_blank" style="color: #C67D5C; text-decoration: none;">$1 →</a>');
+            
+            // Blockquotes: > text
+            htmlContent = htmlContent.replace(/^> (.*?)$/gm, '<blockquote>$1</blockquote>');
+            
+            // Convert paragraphs (double line break)
+            htmlContent = htmlContent.replace(/\n\n/g, '</p><p>');
+            
+            // Single line breaks
+            htmlContent = htmlContent.replace(/\n/g, '<br>');
+            
+            // Wrap in paragraph if doesn't start with a tag
+            if (htmlContent && !htmlContent.startsWith('<')) {
+                htmlContent = '<p>' + htmlContent + '</p>';
+            }
+            
+            // Clean up empty paragraphs
+            htmlContent = htmlContent.replace(/<p><\/p>/g, '');
+            htmlContent = htmlContent.replace(/<p><br><\/p>/g, '');
+
+            const detailHtml = `
+                <div class="lesson-detail">
+                    <div class="lesson-detail-header">
+                        ${category ? `<span class="badge" style="background: rgba(198, 125, 92, 0.2); color: #C67D5C;">${category}</span>` : ''}
+                        <h1 class="lesson-detail-title">${title}</h1>
+                        <div class="lesson-detail-meta">
+                            <span>📝 ${author}</span>
+                            ${dateStr ? `<span>•</span><span>📅 ${dateStr}</span>` : ''}
+                            <span>•</span>
+                            <span>⏱️ ${readTime}</span>
+                            <span>•</span>
+                            <span>❤️ ${likes} likes</span>
+                            ${comments > 0 ? `<span>•</span><span>💬 ${comments} comments</span>` : ''}
+                        </div>
+                        ${notionUrl ? `<div style="margin-top: 1rem;"><a href="${notionUrl}" target="_blank" style="color: #C67D5C; text-decoration: none;">📄 在 Notion 中查看 →</a></div>` : ''}
+                    </div>
+                    <div class="lesson-detail-content">
+                        ${htmlContent || '<p style="color: #8B7D6B; font-style: italic;">暂无内容</p>'}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('lesson-detail-container').innerHTML = detailHtml;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Back to lesson list
+        function backToLessonList() {
+            document.getElementById('lesson-list-view').style.display = 'block';
+            document.getElementById('lesson-detail-view').style.display = 'none';
+            window.scrollTo(0, 0);
         }
 
         // Load Scents
