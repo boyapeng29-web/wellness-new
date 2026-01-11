@@ -568,6 +568,278 @@
             font-size: 1.05rem;
         }
 
+        /* ===== NEW ENHANCED LESSON DESIGN STYLES ===== */
+        
+        /* Tag Chips */
+        .lesson-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-tag {
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            background: rgba(198, 125, 92, 0.1);
+            color: #C67D5C;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(198, 125, 92, 0.2);
+        }
+
+        /* Difficulty Progress Bar */
+        .difficulty-section {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(92, 79, 61, 0.03);
+            border-radius: 8px;
+        }
+
+        .difficulty-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #5C4F3D;
+        }
+
+        .difficulty-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(198, 125, 92, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .difficulty-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #C67D5C 0%, #D4A574 100%);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        /* Snapshot Info Card */
+        .snapshot-card {
+            background: linear-gradient(135deg, rgba(139, 125, 107, 0.08) 0%, rgba(139, 125, 107, 0.04) 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 125, 107, 0.15);
+        }
+
+        .snapshot-card h3 {
+            color: #2C2416;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .snapshot-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+        }
+
+        .snapshot-label {
+            font-weight: 600;
+            color: #8B7D6B;
+            min-width: 100px;
+        }
+
+        .snapshot-value {
+            color: #2C2416;
+            flex: 1;
+        }
+
+        /* Key Insights with Icons */
+        .insights-list {
+            margin: 2rem 0;
+        }
+
+        .insight-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #C67D5C;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s;
+        }
+
+        .insight-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateX(4px);
+        }
+
+        .insight-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(198, 125, 92, 0.15) 0%, rgba(212, 165, 116, 0.15) 100%);
+            border-radius: 50%;
+        }
+
+        .insight-content h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2C2416;
+            font-size: 1.1rem;
+        }
+
+        .insight-content p {
+            margin: 0;
+            color: #5C4F3D;
+            line-height: 1.6;
+        }
+
+        /* Actionable Checklist */
+        .action-checklist {
+            margin: 2rem 0;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(76, 175, 80, 0.02) 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .action-checklist h3 {
+            color: #4CAF50;
+            margin-top: 0;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+        .checklist-item:hover {
+            background: rgba(76, 175, 80, 0.05);
+            border-color: rgba(76, 175, 80, 0.3);
+        }
+
+        .checklist-item.checked {
+            opacity: 0.6;
+            background: rgba(76, 175, 80, 0.08);
+        }
+
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            transition: all 0.3s;
+        }
+
+        .checklist-item:hover .checklist-checkbox {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .checklist-item.checked .checklist-checkbox {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .checklist-checkbox::after {
+            content: '✓';
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .checklist-item.checked .checklist-checkbox::after {
+            opacity: 1;
+        }
+
+        .checklist-text {
+            flex: 1;
+            color: #2C2416;
+            line-height: 1.6;
+        }
+
+        /* Large Centered Quote */
+        .large-quote {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            background: linear-gradient(135deg, rgba(198, 125, 92, 0.05) 0%, rgba(212, 165, 116, 0.05) 100%);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .large-quote::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            color: rgba(198, 125, 92, 0.2);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .large-quote p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #2C2416;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .large-quote-author {
+            font-size: 1rem;
+            color: #8B7D6B;
+            font-style: normal;
+            font-family: 'Crimson Pro', serif;
+            margin-top: 1.5rem;
+        }
+
+        /* Summary text */
+        .lesson-summary {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #5C4F3D;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            font-style: italic;
+        }
+
         .lesson-detail-content .tldr-box h3,
         .lesson-detail-content .tldr-box h4 {
             color: #5C4F3D;
@@ -1810,7 +2082,7 @@
             const readTime = getField(record, 'ReadTime', 'readTime', '阅读时长') || '5m read';
             const likes = getField(record, 'Likes', 'likes', '点赞数') || 0;
             const comments = getField(record, 'Comments', 'comments', '评论数') || 0;
-            const content = getField(record, 'Content', 'content', '内容') || '';
+            let content = getField(record, 'Content', 'content', '内容') || '';
             const publishDate = getField(record, 'PublishDate', 'publishDate', '发布日期');
             const category = getField(record, 'Category', 'category', '分类');
             const notionUrl = getField(record, 'NotionURL', 'notionUrl', 'notion链接');
@@ -1822,94 +2094,121 @@
                 dateStr = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
             }
 
-            // Convert markdown-like content to HTML (enhanced for Notion format)
-            let htmlContent = content;
-            
-            // Detect and wrap special content blocks BEFORE other markdown conversions
-            // TL;DR / Quick Summary blocks (starts with 💡 🎯 or "TL;DR")
-            htmlContent = htmlContent.replace(/^(💡|🎯|TL;DR:?)\s*(.+?)(?=\n##|\n###|$)/gms, 
-                '<div class="tldr-box"><h4>$1 快速要点</h4>$2</div>');
-            
-            // Action / Practical Application blocks (starts with ✅ 💪 or "实践应用")
-            htmlContent = htmlContent.replace(/^(✅|💪|实践应用:?)\s*(.+?)(?=\n##|\n###|$)/gms,
-                '<div class="action-box"><h4>$1 实践建议</h4>$2</div>');
-            
-            // Key Findings / Highlights (starts with ⚡ 🔑 or "核心要点")
-            htmlContent = htmlContent.replace(/^(⚡|🔑|核心要点:?)\s*(.+?)(?=\n##|\n###|$)/gms,
-                '<div class="highlight-box"><h4>$1 重点提示</h4>$2</div>');
-            
-            // Preserve emoji and special characters
-            // Convert headers (must be done before other conversions)
-            htmlContent = htmlContent.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
-            htmlContent = htmlContent.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
-            htmlContent = htmlContent.replace(/^#### (.*?)$/gm, '<h4>$1</h4>');
-            
-            // Convert lists
-            // Unordered lists with -
-            htmlContent = htmlContent.replace(/^- (.*?)$/gm, '<li>$1</li>');
-            // Unordered lists with •
-            htmlContent = htmlContent.replace(/^• (.*?)$/gm, '<li>$1</li>');
-            // Unordered lists with ○
-            htmlContent = htmlContent.replace(/^○ (.*?)$/gm, '<li style="list-style-type: circle; margin-left: 2rem;">$1</li>');
-            // Unordered lists with ■
-            htmlContent = htmlContent.replace(/^■ (.*?)$/gm, '<li style="list-style-type: square; margin-left: 2rem;">$1</li>');
-            
-            // Wrap consecutive <li> tags in <ul>
-            htmlContent = htmlContent.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
-                return '<ul>' + match + '</ul>';
-            });
-            
-            // Convert numbered lists
-            htmlContent = htmlContent.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
-            htmlContent = htmlContent.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
-                // Check if it's not already wrapped in ul
-                if (!match.includes('<ul>')) {
-                    return '<ol>' + match + '</ol>';
+            // Try to parse as JSON first
+            let articleData = null;
+            let isStructured = false;
+            try {
+                // Check if content starts with { (might be JSON)
+                const trimmedContent = content.trim();
+                if (trimmedContent.startsWith('{')) {
+                    articleData = JSON.parse(trimmedContent);
+                    isStructured = true;
                 }
-                return match;
-            });
-            
-            // Convert text formatting
-            // Bold: **text** or __text__
-            htmlContent = htmlContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            htmlContent = htmlContent.replace(/__(.*?)__/g, '<strong>$1</strong>');
-            
-            // Italic: *text* or _text_ (but not if it's part of **)
-            htmlContent = htmlContent.replace(/(?<!\*)\*(?!\*)([^\*]+?)\*(?!\*)/g, '<em>$1</em>');
-            htmlContent = htmlContent.replace(/(?<!_)_(?!_)([^_]+?)_(?!_)/g, '<em>$1</em>');
-            
-            // Inline code: `code`
-            htmlContent = htmlContent.replace(/`([^`]+?)`/g, '<code>$1</code>');
-            
-            // Code blocks: ```code```
-            htmlContent = htmlContent.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-            
-            // Links: [text](url)
-            htmlContent = htmlContent.replace(/\[([^\]]+?)\]\(([^\)]+?)\)/g, '<a href="$2" target="_blank" style="color: #C67D5C; text-decoration: none;">$1 →</a>');
-            
-            // Blockquotes: > text
-            htmlContent = htmlContent.replace(/^> (.*?)$/gm, '<blockquote>$1</blockquote>');
-            
-            // Convert paragraphs (double line break)
-            htmlContent = htmlContent.replace(/\n\n/g, '</p><p>');
-            
-            // Single line breaks
-            htmlContent = htmlContent.replace(/\n/g, '<br>');
-            
-            // Wrap in paragraph if doesn't start with a tag
-            if (htmlContent && !htmlContent.startsWith('<')) {
-                htmlContent = '<p>' + htmlContent + '</p>';
+            } catch (e) {
+                // Not JSON, treat as markdown
+                isStructured = false;
             }
-            
-            // Clean up empty paragraphs
-            htmlContent = htmlContent.replace(/<p><\/p>/g, '');
-            htmlContent = htmlContent.replace(/<p><br><\/p>/g, '');
+
+            let htmlContent = '';
+
+            if (isStructured && articleData) {
+                // Render structured JSON content
+                htmlContent = renderStructuredContent(articleData, {
+                    title: articleData.meta?.title || title,
+                    tags: articleData.meta?.tags || [],
+                    difficulty: articleData.meta?.difficulty_level || 'Beginner',
+                    summary: articleData.meta?.summary || ''
+                });
+            } else {
+                // Convert markdown-like content to HTML (enhanced for Notion format)
+                htmlContent = content;
+                
+                // Detect and wrap special content blocks BEFORE other markdown conversions
+                // TL;DR / Quick Summary blocks (starts with 💡 🎯 or "TL;DR")
+                htmlContent = htmlContent.replace(/^(💡|🎯|TL;DR:?)\s*(.+?)(?=\n##|\n###|$)/gms, 
+                    '<div class="tldr-box"><h4>$1 快速要点</h4>$2</div>');
+                
+                // Action / Practical Application blocks (starts with ✅ 💪 or "实践应用")
+                htmlContent = htmlContent.replace(/^(✅|💪|实践应用:?)\s*(.+?)(?=\n##|\n###|$)/gms,
+                    '<div class="action-box"><h4>$1 实践建议</h4>$2</div>');
+                
+                // Key Findings / Highlights (starts with ⚡ 🔑 or "核心要点")
+                htmlContent = htmlContent.replace(/^(⚡|🔑|核心要点:?)\s*(.+?)(?=\n##|\n###|$)/gms,
+                    '<div class="highlight-box"><h4>$1 重点提示</h4>$2</div>');
+                
+                // Preserve emoji and special characters
+                // Convert headers (must be done before other conversions)
+                htmlContent = htmlContent.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+                htmlContent = htmlContent.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+                htmlContent = htmlContent.replace(/^#### (.*?)$/gm, '<h4>$1</h4>');
+                
+                // Convert lists
+                // Unordered lists with -
+                htmlContent = htmlContent.replace(/^- (.*?)$/gm, '<li>$1</li>');
+                // Unordered lists with •
+                htmlContent = htmlContent.replace(/^• (.*?)$/gm, '<li>$1</li>');
+                // Unordered lists with ○
+                htmlContent = htmlContent.replace(/^○ (.*?)$/gm, '<li style="list-style-type: circle; margin-left: 2rem;">$1</li>');
+                // Unordered lists with ■
+                htmlContent = htmlContent.replace(/^■ (.*?)$/gm, '<li style="list-style-type: square; margin-left: 2rem;">$1</li>');
+                
+                // Wrap consecutive <li> tags in <ul>
+                htmlContent = htmlContent.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
+                    return '<ul>' + match + '</ul>';
+                });
+                
+                // Convert numbered lists
+                htmlContent = htmlContent.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
+                htmlContent = htmlContent.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
+                    // Check if it's not already wrapped in ul
+                    if (!match.includes('<ul>')) {
+                        return '<ol>' + match + '</ol>';
+                    }
+                    return match;
+                });
+                
+                // Convert text formatting
+                // Bold: **text** or __text__
+                htmlContent = htmlContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                htmlContent = htmlContent.replace(/__(.*?)__/g, '<strong>$1</strong>');
+                
+                // Italic: *text* or _text_ (but not if it's part of **)
+                htmlContent = htmlContent.replace(/(?<!\*)\*(?!\*)([^\*]+?)\*(?!\*)/g, '<em>$1</em>');
+                htmlContent = htmlContent.replace(/(?<!_)_(?!_)([^_]+?)_(?!_)/g, '<em>$1</em>');
+                
+                // Inline code: `code`
+                htmlContent = htmlContent.replace(/`([^`]+?)`/g, '<code>$1</code>');
+                
+                // Code blocks: ```code```
+                htmlContent = htmlContent.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+                
+                // Links: [text](url)
+                htmlContent = htmlContent.replace(/\[([^\]]+?)\]\(([^\)]+?)\)/g, '<a href="$2" target="_blank" style="color: #C67D5C; text-decoration: none;">$1 →</a>');
+                
+                // Blockquotes: > text
+                htmlContent = htmlContent.replace(/^> (.*?)$/gm, '<blockquote>$1</blockquote>');
+                
+                // Convert paragraphs (double line break)
+                htmlContent = htmlContent.replace(/\n\n/g, '</p><p>');
+                
+                // Single line breaks
+                htmlContent = htmlContent.replace(/\n/g, '<br>');
+                
+                // Wrap in paragraph if doesn't start with a tag
+                if (htmlContent && !htmlContent.startsWith('<')) {
+                    htmlContent = '<p>' + htmlContent + '</p>';
+                }
+                
+                // Clean up empty paragraphs
+                htmlContent = htmlContent.replace(/<p><\/p>/g, '');
+                htmlContent = htmlContent.replace(/<p><br><\/p>/g, '');
+            }
 
             const detailHtml = `
                 <div class="lesson-detail">
                     <div class="lesson-detail-header">
                         ${category ? `<span class="badge" style="background: rgba(198, 125, 92, 0.2); color: #C67D5C;">${category}</span>` : ''}
-                        <h1 class="lesson-detail-title">${title}</h1>
+                        <h1 class="lesson-detail-title">${isStructured && articleData?.meta?.title ? articleData.meta.title : title}</h1>
                         <div class="lesson-detail-meta">
                             <span>📝 ${author}</span>
                             ${dateStr ? `<span>•</span><span>📅 ${dateStr}</span>` : ''}
@@ -1929,8 +2228,157 @@
 
             document.getElementById('lesson-detail-container').innerHTML = detailHtml;
             
+            // Add checkbox click handlers for action items
+            const checkboxItems = document.querySelectorAll('.checklist-item');
+            checkboxItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                });
+            });
+            
             // Scroll to top
             window.scrollTo(0, 0);
+        }
+
+        // Function to render structured JSON content
+        function renderStructuredContent(data, meta) {
+            let html = '';
+
+            // Tags and Difficulty
+            if (meta.tags && meta.tags.length > 0) {
+                html += '<div class="lesson-tags">';
+                meta.tags.forEach(tag => {
+                    html += `<span class="lesson-tag">${tag}</span>`;
+                });
+                html += '</div>';
+            }
+
+            // Difficulty level
+            if (meta.difficulty) {
+                const difficultyLevels = {
+                    'Beginner': { width: '33%', label: '入门级' },
+                    'Intermediate': { width: '66%', label: '进阶级' },
+                    'Advanced': { width: '100%', label: '高级' }
+                };
+                const diff = difficultyLevels[meta.difficulty] || difficultyLevels['Beginner'];
+                html += `
+                    <div class="difficulty-section">
+                        <div class="difficulty-label">
+                            <span>📊 难度等级</span>
+                            <span><strong>${diff.label}</strong></span>
+                        </div>
+                        <div class="difficulty-bar">
+                            <div class="difficulty-fill" style="width: ${diff.width}"></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Summary
+            if (meta.summary) {
+                html += `<div class="lesson-summary">${meta.summary}</div>`;
+            }
+
+            // Snapshot
+            if (data.content_body?.snapshot) {
+                const snapshot = data.content_body.snapshot;
+                html += '<div class="snapshot-card">';
+                html += '<h3>📸 研究速览</h3>';
+                
+                if (snapshot.context) {
+                    html += `
+                        <div class="snapshot-item">
+                            <div class="snapshot-label">研究背景</div>
+                            <div class="snapshot-value">${snapshot.context}</div>
+                        </div>
+                    `;
+                }
+                
+                if (snapshot.subjects) {
+                    html += `
+                        <div class="snapshot-item">
+                            <div class="snapshot-label">研究对象</div>
+                            <div class="snapshot-value">${snapshot.subjects}</div>
+                        </div>
+                    `;
+                }
+                
+                // Handle additional snapshot fields if they exist
+                Object.keys(snapshot).forEach(key => {
+                    if (key !== 'context' && key !== 'subjects' && snapshot[key]) {
+                        const label = key.charAt(0).toUpperCase() + key.slice(1);
+                        html += `
+                            <div class="snapshot-item">
+                                <div class="snapshot-label">${label}</div>
+                                <div class="snapshot-value">${snapshot[key]}</div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                html += '</div>';
+            }
+
+            // Key Insights with icons
+            if (data.content_body?.key_insights && data.content_body.key_insights.length > 0) {
+                html += '<div class="insights-list">';
+                html += '<h2 style="margin-bottom: 1.5rem;">🔍 核心发现</h2>';
+                
+                const icons = ['💡', '📊', '⚡', '🎯', '🔬', '📈'];
+                
+                data.content_body.key_insights.forEach((insight, idx) => {
+                    const icon = icons[idx % icons.length];
+                    html += `
+                        <div class="insight-item">
+                            <div class="insight-icon">${icon}</div>
+                            <div class="insight-content">
+                                <h4>${insight.heading || `发现 ${idx + 1}`}</h4>
+                                <p>${insight.text || ''}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+            }
+
+            // Mechanism
+            if (data.content_body?.mechanism) {
+                html += `
+                    <div style="margin: 2rem 0;">
+                        <h2>🧠 机制深挖</h2>
+                        <p style="line-height: 1.8; color: #2C2416;">${data.content_body.mechanism}</p>
+                    </div>
+                `;
+            }
+
+            // Action Plan (Checklist)
+            if (data.content_body?.action_plan && data.content_body.action_plan.length > 0) {
+                html += '<div class="action-checklist">';
+                html += '<h3>✅ 实践建议</h3>';
+                
+                data.content_body.action_plan.forEach(action => {
+                    html += `
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">${action}</div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+            }
+
+            // Quote (Large centered)
+            if (data.content_body?.quote) {
+                html += `
+                    <div class="large-quote">
+                        <p>${data.content_body.quote}</p>
+                    </div>
+                `;
+            }
+
+            return html;
         }
 
         // Back to lesson list
